@@ -63,6 +63,7 @@ If you have GPU resources on your personal computer, preparing for local work re
 Follow the official PyTorch installation guidelines to set up the PyTorch environment. This guide uses PyTorch version 2.0.1 with CUDA 11.7. Alternate versions may be specified by adjusting the version number:
 
     pip install torch==2.0.1
+    pip install torch==2.0.1+cu117 -f https://download.pytorch.org/whl/torch_stable.html
 
 Proceed to install sentence_transformers, transformers, accelerate, and str2bool:
 
