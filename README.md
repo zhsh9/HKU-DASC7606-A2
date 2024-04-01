@@ -67,7 +67,7 @@ Follow the official PyTorch installation guidelines to set up the PyTorch enviro
 Proceed to install sentence_transformers, transformers, accelerate, and str2bool:
 
     pip install sentence_transformers==2.3.1
-    pip install transformers==4.31.0
+    pip install transformers==4.32.0
     pip install accelerate==0.22.0
     pip install str2bool
 
@@ -145,7 +145,10 @@ The provided codebase is structured to facilitate conducting experiments with th
 To run experiments and compute the accuracy metric, the following commands can be used:
 
 ```
-python eval_fewshot.py --data_path "data/ARC-Easy-validation.jsonl" --device_id "0,1" --model path_of_llm --embedder path_of_embedder --start_index 0 --end_index 9999 --max_len 1024 --output_path path_to_save_model_predictions --overwrite False --prompt_type "v2.0" --N 8 --top_k True --top_k_reverse False
+python eval_fewshot.py --data_path "data/ARC-Easy-validation.jsonl" --device_id "0,1" \
+                       --model path_of_llm --embedder path_of_embedder --start_index 0 --end_index 9999 \
+                       --max_len 1024 --output_path path_to_save_model_predictions --overwrite False \
+                       --prompt_type "v2.0" --N 8 --top_k True --top_k_reverse False
 python acc.py --prediction_path path_to_save_model_predictions
 ```
 
