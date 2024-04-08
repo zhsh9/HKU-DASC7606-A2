@@ -13,11 +13,11 @@ train_model() {
   local tag=$9
 
   # Create neccessary directories
-  mkdir -p log 
+  mkdir -p log
 
   # Create log file
   if [[ " ${dataset_types[*]} " =~ "Easy" ]]; then
-    echo "[+] Model: Easy, $model, $embedder, $prompt_type, $max_len, $N, $top_k, $top_k_reverse" >> running.log
+    echo "[+] Model: Easy     , $model, $embedder, $prompt_type, $max_len, $N, $top_k, $top_k_reverse" >> running.log
   elif [[ " ${dataset_types[*]} " =~ "Challenge" ]]; then
     echo "[+] Model: Challenge, $model, $embedder, $prompt_type, $max_len, $N, $top_k, $top_k_reverse" >> running.log
   fi
@@ -35,10 +35,34 @@ train_model() {
                            --max_len $max_len --output_path "${output_path}" --overwrite False \
                            --prompt_type "$prompt_type" --N $N --top_k $top_k --top_k_reverse $top_k_reverse | tee "log/${output_path}.log"
     # Print the result
-    echo -n '[-] '
+    echo -n '[-] ' >> running.log
     python acc.py --prediction_path "${output_path}" 2>&1 >> running.log
   done
 }
+
+# Function to clean up generated files
+clean_up() {
+  echo -n "This will clean up all generated files. Are you sure? (Y/N) "
+  read -r response
+  case "$response" in
+    [Yy])
+      echo "Cleaning up generated files..."
+      rm -rf output_*
+      rm -rf log
+      rm -f running.log
+      # Add any additional file or directory clean up commands here
+      ;;
+    *)
+      echo "Clean up cancelled."
+      ;;
+  esac
+}
+
+# Check if the first parameter is "clean" and call the clean_up function
+if [ "${1}" == "clean" ]; then
+  clean_up
+  exit 0
+fi
 
 # Variables to hold the parameter values
 MODEL="model/phi-1_5"
@@ -52,6 +76,9 @@ TOP_K_REVERSE=False
 # Arrays of dataset types
 EASY_DATASET_TYPES=("Easy-train" "Easy-validation" "Easy-test")
 CHALLENGE_DATASET_TYPES=("Challenge-train" "Challenge-validation" "Challenge-test")
+
+# Delete the log file if it exists
+rm -rf running.log
 
 # Call the function with parameters for ARC-Easy and ARC-Challenge dataset types
 ## 1. Parameter tunning: prompt_type
