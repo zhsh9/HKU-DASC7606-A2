@@ -2,6 +2,7 @@
 log/
 model/
 output*/
+running_log/
 __pycache__/
 .DS_Store
 

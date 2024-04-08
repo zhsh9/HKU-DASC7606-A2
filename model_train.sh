@@ -12,6 +12,9 @@ train_model() {
   local top_k_reverse=$8
   local tag=$9
 
+  # Create neccessary directories
+  mkdir -p log 
+
   # Create log file
   if [[ " ${dataset_types[*]} " =~ "Easy" ]]; then
     echo "[+] Model: Easy, $model, $embedder, $prompt_type, $max_len, $N, $top_k, $top_k_reverse" >> running.log
@@ -22,6 +25,9 @@ train_model() {
   for dataset_type in "${dataset_types[@]}"; do
     local output_path="output_${dataset_type}_${model##*/}-${tag}"  # Extract the model name and use it in the output path
     local data_path="data/ARC-${dataset_type}.jsonl"
+
+    # Create the output directory
+    mkdir -p "${output_path}"
 
     # Run the training process
     python eval_fewshot.py --data_path "$data_path" --device_id "0,1" \
