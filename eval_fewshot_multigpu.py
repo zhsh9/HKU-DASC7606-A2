@@ -7,6 +7,7 @@ from typing import Dict, Sequence
 from sentence_transformers import SentenceTransformer
 from scipy.spatial.distance import cosine
 import numpy as np
+import re
 
 IGNORE_INDEX = -100
 
@@ -133,7 +134,7 @@ def example_formating(question, answer=None, candidate_answers=None, prompt_type
             prompt = f"Given the following question and candidate answers, identify the correct answer:\n\nQuestion: {question}\nCandidate answers: {candidate_answers}\nGold answer:"
     elif prompt_type == "v2.1":
         # Divide the whole cadidate_answers string into a list of candidate answers
-        options = re.split(r'(?=\([A-Z]\))', candidate_answers)
+        options = re.split(r'(?=\([A-Z0-9]\))', candidate_answers)
         options = [option.strip() for option in options if option]
         candidate_answers_str = '\n'.join([f"- {a}" for a in options])
         if answer is not None:
