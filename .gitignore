@@ -2,7 +2,7 @@
 log/
 model/
 output*/
-running_log/
+running.log
 __pycache__/
 .DS_Store
 
