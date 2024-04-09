@@ -134,9 +134,9 @@ def example_formating(question, answer=None, candidate_answers=None, prompt_type
     elif prompt_type == "v2.1":
         candidate_answers_str = '\n'.join([f"- {a}" for a in candidate_answers])
         if answer is not None:
-            prompt = f"Task: Determine the correct answer from the list of candidate answers.\n\nQuestion: {question}\nCandidate answers:\n{candidate_answers_str}\nCorrect answer: {answer}\n-------"
+            prompt = f"Task: Based on the following question, determine the correct answer from the list of candidate answers.\n\nQuestion: {question}\nCandidate answers:\n{candidate_answers_str}\nCorrect answer: {answer}\n-------"
         else:
-            prompt = f"Task: Determine the correct answer from the list of candidate answers.\n\nQuestion: {question}\nCandidate answers:\n{candidate_answers_str}\nCorrect answer:\n-------"
+            prompt = f"Task: Based on the following question, determine the correct answer from the list of candidate answers.\n\nQuestion: {question}\nCandidate answers:\n{candidate_answers_str}\nCorrect answer:\n-------"
     else:
         raise NotImplementedError
     return prompt
