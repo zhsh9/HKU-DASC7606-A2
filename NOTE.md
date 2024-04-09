@@ -116,3 +116,18 @@ python eval_fewshot.py --data_path "data/ARC-Challenge-test.jsonl" --device_id "
 
 python acc.py --prediction_path "output_challenge_test_phi_1_5"
 ```
+
+# Automate Parameter Tunning
+
+Find the best combination of params:
+
+- max_len: 516, 1024, 2048
+- prompt_type: v2.0, v2.1
+- N: 4, 8, 16
+- top_k: True, False
+- top_k_reverse: False, True
+
+```bash
+./modeling.sh clean # clean generated files
+./modeling.sh       # start model train & valid & test with different combinations of params
+```
