@@ -5,8 +5,6 @@ import copy
 from str2bool import str2bool
 from typing import Dict, Sequence
 from sentence_transformers import SentenceTransformer
-from scipy.spatial.distance import cosine
-import numpy as np
 import re
 
 IGNORE_INDEX = -100
@@ -151,7 +149,7 @@ def generate_prompt(question, candidate_answers, prompt_type, N,
     indices = list(range(len(demonstrations)))
     if top_k: # task 5
         question_embeddings = llm_embedder(embedder, [question], True) # [1, n_dim]
-        similarity = np.array([[1 - cosine(question_embeddings[0], demo_embedding) for demo_embedding in demonstration_embeddings]]) # "Write Your Code Here" @ "Write Your Code Here" # [1, n_demo]
+        similarity = question_embeddings @ demonstration_embeddings.T # [1, n_demo]
         indices_sorted = sorted(list(range(len(demonstrations))), key=lambda x: similarity[0][x], reverse=True)
         if top_k_reverse:
             indices = indices_sorted[:N][::-1] + indices_sorted[N:]
