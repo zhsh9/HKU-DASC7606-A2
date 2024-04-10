@@ -127,9 +127,9 @@ def example_formating(question, answer=None, candidate_answers=None, prompt_type
             prompt = f"Question: {question}\nCandidate answers: {candidate_answers}\nGold answer:"
     elif prompt_type == "v2.0":  # "Write Your Code Here"
         if answer is not None:
-            prompt = f"Given the following question and candidate answers, identify the correct answer:\n\nQuestion: {question}\nCandidate answers: {candidate_answers}\nGold answer: {answer}"
+            prompt = f"Given the following question and candidate answers, identify the correct answer:\n\nQuestion: {question}\nCandidate answers: {candidate_answers}\nCorrect answer: {answer}"
         else:
-            prompt = f"Given the following question and candidate answers, identify the correct answer:\n\nQuestion: {question}\nCandidate answers: {candidate_answers}\nGold answer:"
+            prompt = f"Given the following question and candidate answers, identify the correct answer:\n\nQuestion: {question}\nCandidate answers: {candidate_answers}\nCorrect answer:"
     elif prompt_type == "v2.1":
         # Divide the whole cadidate_answers string into a list of candidate answers
         options = re.split(r'(?=\([A-Z0-9]\))', candidate_answers)
