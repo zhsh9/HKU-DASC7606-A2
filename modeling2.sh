@@ -81,5 +81,5 @@ rm -rf running.log
 
 # Call the function with parameters for ARC-Easy and ARC-Challenge dataset types
 ## Model: phi-2, embedder: bge-small-en-v1.5, prompt_type: v2.0, max_len: 2048, N: 8, top_k: True, top_k_reverse: True
-train_model EASY_DATASET_TYPES[@] "$MODEL" "$EMBEDDER" "$prompt_type" $MAX_LEN $N $TOP_K $TOP_K_REVERSE
-train_model CHALLENGE_DATASET_TYPES[@] "$MODEL" "$EMBEDDER" "$prompt_type" $MAX_LEN $N $TOP_K $TOP_K_REVERSE
+train_model EASY_DATASET_TYPES[@] "$MODEL" "$EMBEDDER" "$PROMPT_TYPE" $MAX_LEN $N $TOP_K $TOP_K_REVERSE
+train_model CHALLENGE_DATASET_TYPES[@] "$MODEL" "$EMBEDDER" "$PROMPT_TYPE" $MAX_LEN $N $TOP_K $TOP_K_REVERSE

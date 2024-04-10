@@ -147,8 +147,14 @@ Running log:
   - model: phi-2.0
   - embedder: bge-small-en-v1.5
 
+Install safetensor files:
+
 ```console
-pip install transformers==4.37.0
+zhsh@gpu2-comp-121:~/HKU-DASC7606-A2/model/phi-2$ wget https://huggingface.co/microsoft/phi-2/resolve/main/model-00001-of-00002.safetensors && wget https://huggingface.co/microsoft/phi-2/resolve/main/model-00002-of-00002.safetensors
+zhsh@gpu2-comp-121:~/HKU-DASC7606-A2/model/bge-small-en-v1.5$ wget https://huggingface.co/BAAI/bge-small-en-v1.5/resolve/main/model.safetensors
+```
+
+```console
 ./modeling2.sh clean
 ./modeling2.sh
 ```
