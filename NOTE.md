@@ -131,3 +131,30 @@ Find the best combination of params:
 ./modeling.sh clean # clean generated files
 ./modeling.sh       # start model train & valid & test with different combinations of params
 ```
+
+Running log:
+
+```console
+[+] Model: Easy     , model/phi-1_5, model/bge-small-en-v1.5, v2.0, 1024, 8, True, False
+[-] (output_Easy-train_phi-1_5-prompt_type_v2.0) Acc: 0.9911150599733451 (2231 / 2251)
+[-] (output_Easy-validation_phi-1_5-prompt_type_v2.0) Acc: 0.6403508771929824 (365 / 570)
+[-] (output_Easy-test_phi-1_5-prompt_type_v2.0) Acc: 0.6675084175084175 (1586 / 2376)
+```
+
+# Test Different Model
+
+- Model & Embedder:
+  - model: phi-2.0
+  - embedder: bge-small-en-v1.5
+
+```console
+pip install transformers==4.37.0
+./modeling2.sh clean
+./modeling2.sh
+```
+
+Running log:
+
+```console
+
+```
