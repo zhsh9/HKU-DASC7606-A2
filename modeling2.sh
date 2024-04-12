@@ -67,10 +67,10 @@ fi
 MODEL="model/phi-2"
 EMBEDDER="model/bge-small-en-v1.5"
 PROMPT_TYPE="v2.0"
-MAX_LEN=2048
+MAX_LEN=1024
 N=8
 TOP_K=True
-TOP_K_REVERSE=True
+TOP_K_REVERSE=False
 
 # Arrays of dataset types
 EASY_DATASET_TYPES=("Easy-train" "Easy-validation" "Easy-test")
